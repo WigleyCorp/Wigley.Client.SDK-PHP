@@ -2,6 +2,7 @@
 namespace WigleyPay\Sdk\Message;
 
 use WigleyPay\Sdk;
+use WigleyPay\Sdk\Type\ReferenceType;
 
 class Reference extends Sdk\Message {
 

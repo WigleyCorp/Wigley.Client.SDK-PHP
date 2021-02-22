@@ -25,12 +25,13 @@ class Authorization extends ModelsBase
         'ExtendableInstrumentToken' => null,
         'LimitIssuers' => null,
         'MetaReference' => null,
+        'OptionalCommerceId' => null,
         'OptionalMetadata' => null,
         'PromotionInfoIssuers' => null,
         'RedirectUri' => null,
         'Type' => null,
     ];
-
+    
     public static function getValidationMetadata()
     {
         return [
@@ -46,10 +47,14 @@ class Authorization extends ModelsBase
                 'type' => 'string',
                 'required' => false,
             ],
-           'RedirectUri' => [
+            'RedirectUri' => [
                 'type' => 'string',
                 'required' => true,
-           ],
+            ],
+            'OptionalCommerceId' => [
+                'type' => 'int',
+                'required' => false,
+            ],
             'OptionalMetadata' => [
                 'type' => 'string',
                 'required' => false,
@@ -76,13 +81,13 @@ class Authorization extends ModelsBase
             ],
         ];
     }
-
+    
     public function addClientInformationField($value, $k = null)
     {
         array_push($this->data['ClientInformation'], ($value instanceof Type\FieldType ? $value : new Type\FieldType($k, $value)));
         return $this;
     }
-
+    
     public function setClientInformation(array $value)
     {
         $this->data['ClientInformation'] = [];
@@ -91,7 +96,7 @@ class Authorization extends ModelsBase
         }
         return $this;
     }
-
+    
     public function clientInformationToArray()
     {
         if (!is_array($this->data['ClientInformation']) || count($this->data['ClientInformation']) === 0) {
@@ -104,7 +109,7 @@ class Authorization extends ModelsBase
         ksort($hash);
         return $hash;
     }
-
+    
     public function promotionInfoIssuersToArray()
     {
         if (!is_array($this->data['PromotionInfoIssuers']) || count($this->data['PromotionInfoIssuers']) === 0) {
@@ -117,7 +122,7 @@ class Authorization extends ModelsBase
         ksort($hash);
         return $hash;
     }
-
+    
     public function toArray($canonize = false)
     {
         $arr = $this->data;
