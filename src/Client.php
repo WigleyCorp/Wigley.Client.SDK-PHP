@@ -17,6 +17,7 @@ class Client implements SecurePaymentGatewayInterface
 
     private static $env = [
         'test' => 'https://testing.wigleypay.com:4043/SecurePaymentGateway.svc/',
+        'test1' => 'https://testing.wigleypay.com:4043/ProcessPaymentList.svc/',
         'prod' => 'https://pagos.wigleypay.com:4043/SecurePaymentGateway.svc/',
     ];
 
